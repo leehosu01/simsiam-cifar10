@@ -12,7 +12,7 @@ max_epochs = 800
 knn_k = 200
 knn_t = 0.1
 classes = 10
-batch_size = 512 * 3
+batch_size = 512 * 6
 seed=1
 
 pl.seed_everything(seed)
