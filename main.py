@@ -12,7 +12,7 @@ max_epochs = 800
 knn_k = 200
 knn_t = 0.1
 classes = 10
-batch_size = 512
+batch_size = 512 * 3
 seed=1
 
 pl.seed_everything(seed)
@@ -192,7 +192,7 @@ class SimSiamModel(BenchmarkModule):
         return loss
 
     def configure_optimizers(self):
-        optim = torch.optim.SGD(self.resnet_simsiam.parameters(), lr=6e-2,
+        optim = torch.optim.SGD(self.resnet_simsiam.parameters(), lr=6e-2 * batch_size / 512,
                                 momentum=0.9, weight_decay=5e-4)
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optim, max_epochs)
         return [optim], [scheduler]
